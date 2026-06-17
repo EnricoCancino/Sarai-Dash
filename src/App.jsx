@@ -6,116 +6,111 @@ import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [showModal, setShowModal] = useState(false)
+  const [step, setStep] = useState('auth') // 'auth' or 'camera'
+  const [isLogged, setIsLogged] = useState(false)
+
+  const handleOpenAuth = () => {
+    setShowModal(true)
+    setStep('auth')
+  }
+
+  const handleAuthSubmit = (e) => {
+    e.preventDefault()
+    // Move to camera step after submitting details
+    setStep('camera')
+  }
+
+  const handleCameraVerify = () => {
+    setCount((prev) => prev + 1)
+    setIsLogged(true)
+    setTimeout(() => {
+      setShowModal(false)
+      setIsLogged(false)
+    }, 2000) // Autoclose popup after success message
+  }
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
+    <div className="app-wrapper">
+      {/* Navbar */}
+      <header className="navbar">
+        <div className="brand">
+          <img src={heroImg} className="logo-img" alt="Sarai Dash" />
+          <span className="brand-name">Sarai Dash</span>
         </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
+        <div className="tech-stack">
+          <img src={viteLogo} alt="Vite" />
+          <img src={reactLogo} alt="React" />
+        </div>
+      </header>
+
+      {/* Main Page Area */}
+      <main className="main-content">
+        <section id="center" className="hero-box">
+          <h1 className="title">Sarai Dash</h1>
+          <p className="subtitle">
+            Sign in and sign out securely right from your terminal without interrupting your workflow.
           </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
 
-      <div className="ticks"></div>
+          <button type="button" className="action-btn" onClick={handleOpenAuth}>
+            Launch Session Desk
+          </button>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+          <div className="stats">
+            <p>Active Desk Sessions Tracked: <strong>{count}</strong></p>
+          </div>
+        </section>
+      </main>
 
+      {/* Overlay Dialog/Modal Popup */}
+      {showModal && (
+        <div className="modal-overlay">
+          <div className="modal-card">
+            <button className="close-btn" onClick={() => setShowModal(false)}>×</button>
+
+            {step === 'auth' && (
+              <div className="step-container">
+                <h2>Sign In / Sign Up</h2>
+                <p>Provide your seat ID token to synchronize tracking.</p>
+                <form onSubmit={handleAuthSubmit} className="auth-form">
+                  <input type="text" placeholder="Employee ID Number" required />
+                  <input type="password" placeholder="Passcode / Desk PIN" required />
+                  <button type="submit" className="submit-btn">Proceed to Verification</button>
+                </form>
+              </div>
+            )}
+
+            {step === 'camera' && (
+              <div className="step-container">
+                <h2>Camera Attendance</h2>
+                {!isLogged ? (
+                  <>
+                    <p>Position your face relative to your workspace lens.</p>
+                    <div className="camera-viewfinder">
+                      <div className="scan-target"></div>
+                      <span className="camera-status-dot">● LIVE STREAM</span>
+                    </div>
+                    <button type="button" className="submit-btn capture" onClick={handleCameraVerify}>
+                      Capture & Confirm Attendance
+                    </button>
+                  </>
+                ) : (
+                  <div className="success-state">
+                    <div className="success-checkmark">✓</div>
+                    <h3>Session Approved</h3>
+                    <p>Your desk record has been safely updated.</p>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* Hidden layout elements preserved from native project styles */}
       <div className="ticks"></div>
       <section id="spacer"></section>
-    </>
+    </div>
   )
 }
 
