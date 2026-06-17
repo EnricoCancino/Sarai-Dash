@@ -1,3 +1,9 @@
+# Sarai Dash
+
+Project 'Sarai Dash' is a web app designed to streamlined time-in-time-out without employees leaving their seat, made compact and convenient.
+
+Made available in major platforms, with QR code and photo tracking features.
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
