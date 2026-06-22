@@ -576,6 +576,63 @@
           opacity: 0.8;
         }
 
+        /* Time-based action buttons */
+        .time-action-btn {
+          font-size: 0.95rem;
+        }
+
+        .am-in-trigger {
+          background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+          color: #78350f;
+          border: 1px solid rgba(217, 119, 6, 0.3);
+        }
+
+        .am-in-trigger:hover {
+          background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+          color: var(--pure-white);
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(217, 119, 6, 0.3);
+        }
+
+        .am-out-trigger {
+          background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
+          color: #3f0f5c;
+          border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .am-out-trigger:hover {
+          background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+          color: var(--pure-white);
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+        }
+
+        .pm-in-trigger {
+          background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+          color: #064e3b;
+          border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .pm-in-trigger:hover {
+          background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+          color: var(--pure-white);
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+
+        .pm-out-trigger {
+          background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+          color: #1e3a8a;
+          border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .pm-out-trigger:hover {
+          background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+          color: var(--pure-white);
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+
         .camera-viewfinder-box {
           width: 100%;
           aspect-ratio: 4/3;
@@ -895,6 +952,11 @@
           display: flex;
           flex-direction: column;
           height: 520px;
+          min-width: 0;
+          width: 100%;
+          overflow: hidden;
+          position: relative;
+          z-index: 5;
         }
 
         .records-header {
@@ -952,6 +1014,10 @@
           display: grid;
           grid-template-columns: 1.5fr 1fr;
           gap: 10px;
+          min-width: 0;
+          position: relative;
+          z-index: 10;
+          overflow: hidden;
         }
 
         .search-input-field {
@@ -959,14 +1025,17 @@
           border-radius: var(--border-radius-md);
           border: 1px solid rgba(0, 0, 0, 0.1);
           font-size: 12px;
+          min-width: 0;
         }
 
         .dept-filter-dropdown {
+          color: #333; /* Or any color that contrasts with white */
           padding: 8px 12px;
           border-radius: var(--border-radius-md);
           border: 1px solid rgba(0, 0, 0, 0.1);
           font-size: 12px;
           background-color: var(--pure-white);
+          min-width: 0;
         }
 
         .logs-scroller {
@@ -976,6 +1045,11 @@
           display: flex;
           flex-direction: column;
           gap: 12px;
+          min-width: 0;
+          width: 100%;
+          position: relative;
+          z-index: 10;
+          background-color: var(--pure-black);
         }
 
         .no-logs-fallback {
@@ -997,13 +1071,14 @@
 
         .individual-log-row {
           display: grid;
-          grid-template-columns: 42px 1fr auto;
+          grid-template-columns: 42px minmax(0, 1fr) minmax(auto, 70px);
           gap: 12px;
           align-items: center;
           padding: 10px 14px;
           border-radius: var(--border-radius-md);
           border: 1px solid rgba(0, 0, 0, 0.04);
           transition: all 0.2s ease;
+          width: 100%;
         }
 
         .log-signin {
@@ -1053,6 +1128,9 @@
         .log-core-details {
           display: flex;
           flex-direction: column;
+          min-width: 0;
+          overflow: hidden;
+          flex: 1;
         }
 
         .log-name-title {
@@ -1060,6 +1138,10 @@
           font-weight: 700;
           color: var(--text-dark);
           margin: 0;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          flex: 1;
         }
 
         .log-meta-tagline {
@@ -1067,6 +1149,8 @@
           align-items: center;
           gap: 6px;
           margin-top: 2px;
+          min-width: 0;
+          overflow: hidden;
         }
 
         .log-dept-pill {
@@ -1075,12 +1159,18 @@
           padding: 1px 6px;
           border-radius: 10px;
           color: var(--text-muted);
+          flex-shrink: 0;
         }
 
         .log-id-code {
           font-size: 9px;
           font-family: monospace;
           color: var(--text-muted);
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          flex-shrink: 1;
+          min-width: 0;
         }
 
         .log-timestamp-group {

@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
-import './App.css'
+import './dashboard.css'
 
 // Safely define asset paths as string URLs to prevent Vite bundler resolution errors on binary files
 const reactLogo = "https://cdnjs.cloudflare.com/ajax/libs/logos/1.0.0/react.svg"
@@ -11,7 +11,7 @@ const bagongPilipinasImg = "./assets/BagongPilipinas.png"
 const dostLogoImg = "./assets/DOST LOGO GLOBAL.png"
 const saraiIlocosImg = "./assets/Sarai-IlocosRegion.png"
 
-export default function App() {
+export default function Dashboard() {
   // Navigation & UI States
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState('tracker'); // tracker, list, about
@@ -50,7 +50,7 @@ export default function App() {
 
   // Handlers: start process, camera control, capture, and submit
   const handleStartProcess = async (action) => {
-    setActionType(action);
+    setActionType(action); // 'AM IN', 'AM OUT', 'PM IN', 'PM OUT', 'Sign In', 'Sign Out'
     if (!employeeId || !employeeName) {
       alert('Please enter Employee ID and Name');
       return;
@@ -99,6 +99,7 @@ export default function App() {
     const now = new Date();
     const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
     const date = now.toLocaleDateString([], { year: 'numeric', month: 'long', day: 'numeric' });
+    const isCheckIn = ['Sign In', 'AM IN', 'PM IN'].includes(actionType);
     const newLog = {
       id: employeeId || `SARAI-${Math.random().toString(36).slice(2,8).toUpperCase()}`,
       name: employeeName || 'Unknown',
@@ -106,7 +107,7 @@ export default function App() {
       time,
       date,
       type: actionType,
-      status: actionType === 'Sign In' ? 'On Desk' : 'Left Desk',
+      status: isCheckIn ? 'On Desk' : 'Left Desk',
       photo: capturedPhoto || 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150'
     };
     setAttendanceLogs(prev => [newLog, ...prev]);
@@ -353,25 +354,49 @@ export default function App() {
                       <div className="attendance-action-panel">
                         <button 
                           type="button" 
-                          onClick={() => handleStartProcess('Sign In')}
-                          className="action-btn sign-in-trigger"
+                          onClick={() => handleStartProcess('AM IN')}
+                          className="action-btn time-action-btn am-in-trigger"
                         >
-                          <span className="action-icon">☀️</span>
+                          <span className="action-icon">🌅</span>
                           <div className="action-label">
-                            <strong>Sign In (Desk Arrival)</strong>
-                            <span className="action-sub">Initialize morning/afternoon shift</span>
+                            <strong>AM IN</strong>
+                            <span className="action-sub">Morning Arrival</span>
                           </div>
                         </button>
 
                         <button 
                           type="button" 
-                          onClick={() => handleStartProcess('Sign Out')}
-                          className="action-btn sign-out-trigger"
+                          onClick={() => handleStartProcess('AM OUT')}
+                          className="action-btn time-action-btn am-out-trigger"
+                        >
+                          <span className="action-icon">🍽️</span>
+                          <div className="action-label">
+                            <strong>AM OUT</strong>
+                            <span className="action-sub">Lunch Break</span>
+                          </div>
+                        </button>
+
+                        <button 
+                          type="button" 
+                          onClick={() => handleStartProcess('PM IN')}
+                          className="action-btn time-action-btn pm-in-trigger"
+                        >
+                          <span className="action-icon">☕</span>
+                          <div className="action-label">
+                            <strong>PM IN</strong>
+                            <span className="action-sub">After Lunch</span>
+                          </div>
+                        </button>
+
+                        <button 
+                          type="button" 
+                          onClick={() => handleStartProcess('PM OUT')}
+                          className="action-btn time-action-btn pm-out-trigger"
                         >
                           <span className="action-icon">🌙</span>
                           <div className="action-label">
-                            <strong>Sign Out (Departure)</strong>
-                            <span className="action-sub">Register off-desk or end-of-day</span>
+                            <strong>PM OUT</strong>
+                            <span className="action-sub">End of Day</span>
                           </div>
                         </button>
                       </div>
@@ -387,7 +412,7 @@ export default function App() {
                         <h3>Camera Verification</h3>
                         <p>Verify your physical presence at your desk station. Align your face nicely.</p>
                       </div>
-                      <span className={`pill-badge ${actionType === 'Sign In' ? 'in-badge' : 'out-badge'}`}>{actionType}</span>
+                      <span className={`pill-badge ${['Sign In', 'AM IN', 'PM IN'].includes(actionType) ? 'in-badge' : 'out-badge'}`}>{actionType}</span>
                     </div>
 
                     <div className="camera-viewfinder-box">
@@ -455,8 +480,13 @@ export default function App() {
                         </div>
                         <div className="field-row">
                           <span className="field-label">Log Type</span>
-                          <span className={`field-val font-bold ${actionType === 'Sign In' ? 'text-green' : 'text-orange'}`}>
-                            {actionType === 'Sign In' ? '☀️ Sign In' : '🌙 Sign Out'}
+                          <span className={`field-val font-bold ${['Sign In', 'AM IN', 'PM IN'].includes(actionType) ? 'text-green' : 'text-orange'}`}>
+                            {actionType === 'AM IN' && '🌅 AM IN'} 
+                            {actionType === 'AM OUT' && '🍽️ AM OUT'} 
+                            {actionType === 'PM IN' && '☕ PM IN'} 
+                            {actionType === 'PM OUT' && '🌙 PM OUT'} 
+                            {actionType === 'Sign In' && '☀️ Sign In'} 
+                            {actionType === 'Sign Out' && '🌙 Sign Out'}
                           </span>
                         </div>
                       </div>
@@ -468,7 +498,7 @@ export default function App() {
                       </button>
                       
                       <button className="primary-btn btn-success" onClick={handleSubmitAttendance}>
-                        ✓ Submit Secure Sign {actionType === 'Sign In' ? 'In' : 'Out'}
+                        ✓ Submit {actionType}
                       </button>
                     </div>
                   </div>
@@ -481,7 +511,14 @@ export default function App() {
                       <div className="checkmark-circle">✓</div>
                     </div>
 
-                    <h3>Sign {actionType === 'Sign In' ? 'In' : 'Out'} Registered Successfully!</h3>
+                    <h3>
+                      {actionType === 'AM IN' && '🌅 AM IN Recorded Successfully!'}
+                      {actionType === 'AM OUT' && '🍽️ AM OUT Recorded Successfully!'}
+                      {actionType === 'PM IN' && '☕ PM IN Recorded Successfully!'}
+                      {actionType === 'PM OUT' && '🌙 PM OUT Recorded Successfully!'}
+                      {actionType === 'Sign In' && '☀️ Sign In Registered Successfully!'}
+                      {actionType === 'Sign Out' && '🌙 Sign Out Registered Successfully!'}
+                    </h3>
                     <p className="success-sub">Thank you, {employeeName}. Your physical presence logs have been instantly logged to the SARAI climate system databases.</p>
 
                     <div className="desk-tips-card">
