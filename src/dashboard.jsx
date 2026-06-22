@@ -272,11 +272,11 @@ export default function Dashboard() {
             {/* HERO COMPONENT - Introducing Project Sarai Dash */}
             <div className="tracker-hero-banner">
               <div className="hero-badge">
-                <span className="leaf-emoji">🌾</span> Smart Farm & Climate Tech
+                <span className="leaf-emoji">🌾</span> Smart Farm & Agricultural Tech
               </div>
-              <h2>Dedicated Sarai Ecosystem</h2>
+              <h2>Dedicated SARAI  Ecosystem</h2>
               <p style={{ ctextAlign: 'center', maxWidth: '600px', margin: '0 auto' }}>
-                Skip physical biometrics. Register your desk-in and desk-out logs cleanly via localized face-and-id matching.
+                All in one place, workspace.
               </p>
             </div>
 
