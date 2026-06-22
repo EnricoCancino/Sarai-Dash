@@ -1,8 +1,11 @@
 # Sarai Dash
 
-Project 'Sarai Dash' is a web app designed to streamlined time-in-time-out without employees leaving their seat, made compact and convenient.
+Goals & Mission: 
 
+Project 'Sarai Dash' is a web app designed to streamlined time-in-time-out without employees leaving their seat, made compact and convenient.
 Made available in major platforms, with QR code and photo tracking features.
+
+Now specializing in Document Tracking System (DTS), made compact.
 
 # React + Vite
 
