@@ -7,6 +7,17 @@ Made available in major platforms, with QR code and photo tracking features.
 
 Now specializing in Document Tracking System (DTS), made compact.
 
+//Gawin niyong enhanced toh, dapat yung polished code na para bukas
+// Form State
+  const [employeeId, setEmployeeId] = useState('');
+  const [employeeName, setEmployeeName] = useState('');
+  const [department, setDepartment] = useState('SARAI Research');
+  const [actionType, setActionType] = useState('Sign In'); // 'Sign In' or 'Sign Out'
+  const [capturedPhoto, setCapturedPhoto] = useState(null);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filterDept, setFilterDept] = useState('All');
+
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
