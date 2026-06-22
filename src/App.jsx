@@ -273,8 +273,10 @@ export default function App() {
               <div className="hero-badge">
                 <span className="leaf-emoji">🌾</span> Smart Farm & Climate Tech
               </div>
-              <h2>Desk Attendance Ecosystem</h2>
-              <p>Skip physical biometrics. Register your desk-in and desk-out logs cleanly via localized face-and-id matching.</p>
+              <h2>Dedicated Sarai Ecosystem</h2>
+              <p style={{ ctextAlign: 'center', maxWidth: '600px', margin: '0 auto' }}>
+                Skip physical biometrics. Register your desk-in and desk-out logs cleanly via localized face-and-id matching.
+              </p>
             </div>
 
             <div className="tracker-main-grid">

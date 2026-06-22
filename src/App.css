@@ -35,16 +35,14 @@
 
         .sarai-grid-background {
           position: absolute;
-          top: 0;
-          left: 0;
+          inset: 0;
           width: 100%;
-          height: 500px;
-          background-image: 
-            radial-gradient(var(--emerald-light) 1.5px, transparent 1.5px), 
-            radial-gradient(var(--emerald-light) 1.5px, var(--bg-slate-light) 1.5px);
-          background-size: 40px 40px;
-          background-position: 0 0, 20px 20px;
-          opacity: 0.35;
+          height: 100%;
+          background-color: rgba(236, 253, 235, 0.95);
+          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 220'%3E%3Cpath fill='%23156f3d' opacity='0.18' d='M22 70c16-12 32-14 50-3c19 11 26 30 16 48c-14 24-44 30-61 11c-17-19-16-38-5-56Z'/%3E%3Cpath fill='%23156f3d' opacity='0.12' d='M100 16c16 9 30 21 27 38c-4 21-24 42-38 52c-18-14-24-34-17-52c8-18 17-33 28-38Z'/%3E%3Cpath fill='%23156f3d' opacity='0.16' d='M186 58c14 11 18 28 11 44c-8 19-25 29-42 25c-8-19-6-34 3-51c11-21 21-28 28-18Z'/%3E%3Cpath fill='%23156f3d' opacity='0.14' d='M48 146c12 10 26 16 40 12c17-5 30-22 32-40c-20-5-33 1-48 14c-10 9-18 16-24 24Z'/%3E%3Cpath fill='%23156f3d' opacity='0.12' d='M152 158c9 8 22 11 34 7c17-6 26-26 18-42c-11-22-32-30-51-22c-5 18-3 31 0 57Z'/%3E%3C/svg%3E");
+          background-repeat: repeat;
+          background-size: 220px 220px;
+          opacity: 0.28;
           z-index: -1;
           pointer-events: none;
         }
@@ -504,6 +502,12 @@
           font-size: 14px;
           transition: all 0.2s ease;
           background-color: var(--bg-slate-light);
+          color: var(--text-dark);
+        }
+
+        .form-group select option {
+          color: var(--text-dark);
+          background-color: var(--pure-white);
         }
 
         .form-group input:focus, .form-group select:focus {
@@ -803,7 +807,7 @@
           cursor: pointer;
           transition: all 0.2s ease;
         }
-
+ 
         .secondary-btn:hover {
           background-color: var(--bg-slate-light);
         }
