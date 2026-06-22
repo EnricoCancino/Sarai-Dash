@@ -34,10 +34,10 @@ export default function App() {
 
   // Restored Mock Attendance Database State
   const [attendanceLogs, setAttendanceLogs] = useState([
-    { id: 'SARAI-001', name: 'Dr. Maria Santos', dept: 'SARAI Research', time: '08:15 AM', date: 'June 17, 2026', type: 'Sign In', status: 'On Desk', photo: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150' },
-    { id: 'SARAI-002', name: 'Engr. Juan Dela Cruz', dept: 'Precision Agriculture', time: '08:30 AM', date: 'June 17, 2026', type: 'Sign In', status: 'On Desk', photo: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=150' },
-    { id: 'SARAI-003', name: 'Clarissa Ramirez', dept: 'IT & Dashboards', time: '09:02 AM', date: 'June 17, 2026', type: 'Sign In', status: 'On Desk', photo: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150' },
-    { id: 'SARAI-004', name: 'Arnel Bautista', dept: 'Data Modeling', time: '05:00 PM', date: 'June 16, 2026', type: 'Sign Out', status: 'Left Desk', photo: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150' }
+    { id: 'SARAI-001', name: 'Dr. Maria Santos', dept: 'SARAI', time: '08:15 AM', date: 'June 17, 2026', type: 'Sign In', status: 'On Desk', photo: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150' },
+    { id: 'SARAI-002', name: 'Engr. Juan Dela Cruz', dept: 'CEST', time: '08:30 AM', date: 'June 17, 2026', type: 'Sign In', status: 'On Desk', photo: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=150' },
+    { id: 'SARAI-003', name: 'Clarissa Ramirez', dept: 'OJT', time: '09:02 AM', date: 'June 17, 2026', type: 'Sign In', status: 'On Desk', photo: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150' },
+    { id: 'SARAI-004', name: 'Arnel Bautista', dept: 'OTHERS', time: '05:00 PM', date: 'June 16, 2026', type: 'Sign Out', status: 'Left Desk', photo: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150' }
   ]);
 
 
@@ -342,11 +342,11 @@ export default function App() {
                           value={department} 
                           onChange={(e) => setDepartment(e.target.value)}
                         >
-                          <option value="SARAI Research">SARAI Research Division</option>
-                          <option value="Precision Agriculture">Precision Agriculture Lab</option>
-                          <option value="IT & Dashboards">IT & Dashboards Unit</option>
-                          <option value="Data Modeling">Data Modeling & Climate</option>
-                          <option value="Administration Support">Administration Support</option>
+                          <option value="SARAI">SARAI</option>
+                          <option value="CEST">CEST</option>
+                          <option value="OJT">OJT</option>
+                          <option value="OTHERS">OTHERS</option>
+                          <option value="Administration">Administration</option>
                         </select>
                       </div>
 
@@ -530,11 +530,11 @@ export default function App() {
                     className="dept-filter-dropdown"
                   >
                     <option value="All">All Stations</option>
-                    <option value="SARAI Research">SARAI Research</option>
-                    <option value="Precision Agriculture">Precision Agriculture</option>
-                    <option value="IT & Dashboards">IT & Dashboards</option>
-                    <option value="Data Modeling">Data Modeling</option>
-                    <option value="Administration Support">Admin Support</option>
+                    <option value="SARAI">SARAI</option>
+                    <option value="CEST">CEST</option>
+                    <option value="OJT">OJT</option>
+                    <option value="OTHERS">OTHERS</option>
+                    <option value="Administration">Administration</option>
                   </select>
                 </div>
 
